@@ -5,7 +5,13 @@ include('lib-v5/config.php');
 include('lib-v5/classes.php');
 include('lib-v5/functions.php');
 
-/** Parameters **/
+/*
+ * Parameters 
+ *
+ *  $tok is the payment card alias/token
+ *  $uid is the subscription id
+ * 
+*/
 
 $tok    =  '173a814c0dfc4665bb400e29d4b4f87f';
 $uid    =  '20150828JMZGgS';
