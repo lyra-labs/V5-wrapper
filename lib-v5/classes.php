@@ -2,11 +2,10 @@
 /**
  * StandardWS class
  *
- *
- *
- * @author    {author}
- * @copyright {copyright}
- * @package   {package}
+ * @author    
+ *  Cedric Morin, Nursit.com
+ * @copyright 
+ * 
  */
 class PayzenWSv5 extends SoapClient {
 	protected $header_namespace = "http://v5.ws.vads.lyra.com/Header/";

@@ -1,4 +1,12 @@
 <?php
+/**
+ * StandardWS functions 
+ *
+ * @author
+ *  Cedric Morin, Nursit.com
+ * @copyright
+ *
+ */
 function setHeaders($shopId, $requestId, $timestamp, $mode, $authToken, $key, $client){
 //Création des en-têtes shopId, requestId, timestamp, mode et authToken
 	$ns = 'http://v5.ws.vads.lyra.com/Header/';
