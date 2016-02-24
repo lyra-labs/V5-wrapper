@@ -1,7 +1,7 @@
 <?php
 
 
-include('config.php');
+include('lib-v5/config.php');
 include('lib-v5/classes.php');
 include('lib-v5/functions.php');
 
