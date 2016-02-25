@@ -101,6 +101,7 @@ class PayzenWSv5 extends SoapClient {
 		}
 		return $response;
 	}
+
 	/**
 	 * @param $paymentToken
 	 * @return bool|mixed
@@ -116,6 +117,20 @@ class PayzenWSv5 extends SoapClient {
 		$cancelToken->queryRequest = $queryRequest;
 		return $this->call_ws('cancelToken', array($cancelToken));
 	}
+
+	/**
+	 * @param $paymentToken
+	 * @return bool|mixed
+	 */
+	public function reactivateToken($paymentToken){
+		//Génération du body
+		$queryRequest = new queryRequest();
+		$queryRequest->paymentToken = $paymentToken;
+		$reactivateToken = new reactivateToken();
+		$reactivateToken->queryRequest = $queryRequest;
+		return $this->call_ws('reactivateToken', array($reactivateToken));
+	}
+
 
 	/**
 	 * @param $paymentToken
