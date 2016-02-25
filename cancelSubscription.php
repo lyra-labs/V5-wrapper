@@ -16,23 +16,23 @@ include('lib-v5/functions.php');
 /*
  * Parameters 
  *
- *  $tok is the payment card alias/token
- *  $uid is the subscription id
+ *  $token is the payment card alias/token
+ *  $subid is the subscription id
  * 
 */
 
-$tok    =  '173a814c0dfc4665bb400e29d4b4f87f';
-$uid    =  '20150828JMZGgS';
+$token    =  'c53360e0d89246a183278956c83e962b';
+$subid    =  '20150723x5Wpys';
 
 /** execute **/
 
-spip_log("start<br>  cancelSubscription $uid for token $tok",$mode."_LOG");
+spip_log("start<br>  cancelSubscription $subid for token $token",$mode."_LOG");
 
 $vads = new PayzenWSv5($config);
 
 $response = new cancelSubscriptionResponse();
     try {
-        $response = $vads->cancelSubscription($tok, $uid);
+        $response = $vads->cancelSubscription($token, $subid);
     }
     catch (Exception $e) {
         spip_log("call_resilier_abonnement : erreur ".$e->getMessage(),$mode."_LOG");
@@ -40,20 +40,20 @@ $response = new cancelSubscriptionResponse();
     }
 
     if ($e = $response->cancelSubscriptionResult->commonResponse->responseCode){
-        spip_log($s="call_resilier_abonnement $uid : erreur $e : ".$response->cancelSubscriptionResult->commonResponse->responseCodeDetail,$mode._LOG_RESP);
+        spip_log($s="call_resilier_abonnement $subid : erreur $e : ".$response->cancelSubscriptionResult->commonResponse->responseCodeDetail,$mode._LOG_RESP);
         // 33 : Invalid Subscription => on est donc bien desabonne
         if ($e==33) {
-            spip_log($s="call_resilier_abonnement $uid : erreur $e : ".$response->cancelSubscriptionResult->commonResponse->responseCodeDetail,$mode."_E33");
+            spip_log($s="call_resilier_abonnement $subid : erreur $e : ".$response->cancelSubscriptionResult->commonResponse->responseCodeDetail,$mode."_E33");
             return true;
         }
         else {
-        spip_log($s="call_resilier_abonnement $uid : erreur $e : ".$response->cancelSubscriptionResult->commonResponse->responseCodeDetail,$mode."_NOT33");
+        spip_log($s="call_resilier_abonnement $subid : erreur $e : ".$response->cancelSubscriptionResult->commonResponse->responseCodeDetail,$mode."_NOT33");
             return false;
         }
     }
 
     else {
-        echo "<br>call_resilier_abonnement $uis : OK<br>response code "
+        echo "<br>call_resilier_abonnement $subid : OK<br>response code "
          .$response->cancelSubscriptionResult->commonResponse->responseCode
          ." : ".$response->cancelSubscriptionResult->commonResponse->responseCodeDetail;
     }
