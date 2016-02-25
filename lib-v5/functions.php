@@ -4,9 +4,30 @@
  *
  * @author
  *  Cedric Morin, Nursit.com
+ *  Parslow, LyraNetwork
  * @copyright
  *
  */
+
+// Compatibility functions 
+
+function spip_log($txt, $mode) {
+// Allows to keep the spip log function
+    echo "</br>[$mode]</br>$txt</br>";
+
+}
+
+function systempay_key($config){
+// get the TEST or PRODUCTION key when needed
+    if ($config['mode_test']) {
+        return $config['CLE_test'];
+    }
+    return $config['CLE'];
+}
+
+// Original functions //
+
+
 function setHeaders($shopId, $requestId, $timestamp, $mode, $authToken, $key, $client){
 //Création des en-têtes shopId, requestId, timestamp, mode et authToken
 	$ns = 'http://v5.ws.vads.lyra.com/Header/';
