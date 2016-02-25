@@ -103,6 +103,22 @@ class PayzenWSv5 extends SoapClient {
 	}
 	/**
 	 * @param $paymentToken
+	 * @return bool|mixed
+	 */
+	public function cancelToken($paymentToken){
+		//Génération du body
+		$commonRequest = new commonRequest();
+		$commonRequest->submissionDate = new DateTime('now', new DateTimeZone('UTC'));
+		$queryRequest = new queryRequest();
+		$queryRequest->paymentToken = $paymentToken;
+		$cancelToken = new cancelToken();
+		$cancelToken->commonRequest = $commonRequest;
+		$cancelToken->queryRequest = $queryRequest;
+		return $this->call_ws('cancelToken', array($cancelToken));
+	}
+
+	/**
+	 * @param $paymentToken
 	 * @param $subscriptionId
 	 * @return bool|mixed
 	 */
