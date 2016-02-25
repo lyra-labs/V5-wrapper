@@ -1,5 +1,13 @@
 <?php
-
+/**
+ * cancelSubscription example
+ *
+ * @author
+ *  Cedric Morin, Nursit.com
+ *  Parslow, LyraNetwork
+ * @copyright
+ *
+ */
 
 include('lib-v5/config.php');
 include('lib-v5/classes.php');
