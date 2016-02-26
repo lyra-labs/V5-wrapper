@@ -131,6 +131,20 @@ class PayzenWSv5 extends SoapClient {
 		return $this->call_ws('reactivateToken', array($reactivateToken));
 	}
 
+	/**
+	 * @param $paymentToken
+	 * @return bool|mixed
+	 */
+	public function getTokenDetails($paymentToken){
+		//Génération du body
+		$queryRequest = new queryRequest();
+		$queryRequest->paymentToken = $paymentToken;
+		$getTokenDetails = new getTokenDetails();
+		$getTokenDetails->queryRequest = $queryRequest;
+		return $this->call_ws('getTokenDetails', array($getTokenDetails));
+	}
+
+
 
 	/**
 	 * @param $paymentToken
