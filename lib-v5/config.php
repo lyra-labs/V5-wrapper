@@ -8,6 +8,12 @@
  *
  */
 
+// Define URL constant
+//  use secure.payzen.eu for production instance
+//      demo.payzen.eu for demo instance
+define("NAMESPACE_URL","http://v5.ws.vads.lyra.com/Header/");
+define("WSDL_URL","https://secure.payzen.eu/vads-ws/v5?wsdl");
+#define("WSDL_URL","https://demo.payzen.eu/vads-ws/v5?wsdl");
 
 // LOG prefix - keep spip_log compatibility
 $mode   =  'inter';
