@@ -56,7 +56,7 @@ class PayzenWSv5 extends SoapClient {
 		$headers = array();
 		$uuid = $this->gen_uuid();
 		$timestamp = gmdate("Y-m-d\TH:i:s\Z");
-		$key = systempay_key($this->config);
+		$key = payzen_key($this->config);
 		$authToken = $this->getAuthToken($uuid, $timestamp, $key);
 		$headers[] = new SoapHeader($this->header_namespace,"shopId",$this->config['SITE_ID']);
 		$headers[] = new SoapHeader($this->header_namespace,"requestId",$uuid);
@@ -93,7 +93,7 @@ class PayzenWSv5 extends SoapClient {
 		#var_dump($response);
 		#var_dump($response[$method."Result"]);
 		//Calcul du jeton d'authentification de la réponse
-		$authTokenResponse = base64_encode(hash_hmac('sha256', $responseHeader['timestamp'] . $responseHeader['requestId'], systempay_key($this->config), true));
+		$authTokenResponse = base64_encode(hash_hmac('sha256', $responseHeader['timestamp'] . $responseHeader['requestId'], payzen_key($this->config), true));
 		if ($authTokenResponse!==$responseHeader['authToken']){
 			//Erreur de calcul ou tentative de fraude
 			spip_log("call_ws:$method: Erreur signature reponse","payzen_ws"._LOG_ERREUR);
