@@ -17,7 +17,7 @@ function spip_log($txt, $mode) {
 
 }
 
-function systempay_key($config){
+function payzen_key($config){
 // get the TEST or PRODUCTION key when needed
     if ($config['mode_test']) {
         return $config['CLE_test'];
@@ -30,7 +30,7 @@ function systempay_key($config){
 
 function setHeaders($shopId, $requestId, $timestamp, $mode, $authToken, $key, $client){
 //Création des en-têtes shopId, requestId, timestamp, mode et authToken
-	$ns = 'http://v5.ws.vads.lyra.com/Header/';
+	$ns = NAMESPACE_URL;
 	$headerShopId = new SOAPHeader ($ns, 'shopId', $shopId);
 	$headerRequestId = new SOAPHeader ($ns, 'requestId', $requestId);
 	$headerTimestamp = new SOAPHeader ($ns, 'timestamp', $timestamp);

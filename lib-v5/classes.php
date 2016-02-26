@@ -8,13 +8,13 @@
  * 
  */
 class PayzenWSv5 extends SoapClient {
-	protected $header_namespace = "http://v5.ws.vads.lyra.com/Header/";
+	protected $header_namespace = NAMESPACE_URL;
 	private $config = null;
 	private static $classmap = array(
 	);
 	public function PayzenWSv5(
 		$config,
-		$wsdl = "https://secure.payzen.eu/vads-ws/v5?wsdl",
+		$wsdl = WSDL_URL,
 		$options = array('trace' => 1, 'encoding' => 'UTF-8')){
 		$this->config = $config;
 		foreach (self::$classmap as $key => $value){
