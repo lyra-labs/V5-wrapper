@@ -102,6 +102,12 @@ class PayzenWSv5 extends SoapClient {
 		return $response;
 	}
 
+/**
+ *
+ *
+ */
+
+
 	/**
 	 * @param $paymentToken
 	 * @return bool|mixed
@@ -163,7 +169,41 @@ class PayzenWSv5 extends SoapClient {
 		$cancelSubscription->queryRequest = $queryRequest;
 		return $this->call_ws('cancelSubscription', array($cancelSubscription));
 	}
+
+	public function createSubscription($order, $subscription, $card){
+		//Génération du body
+		$commonRequest = new commonRequest();
+		$commonRequest->submissionDate = new DateTime('now', new DateTimeZone('UTC'));
+		$orderRequest = new orderRequest();
+		$orderRequest->orderId = $order['orderId'];
+		$orderRequest->extInfo = $order['extInfo'];
+		$subscriptionRequest = new subscriptionRequest();
+		$subscriptionRequest->effectDate = $subscription['effectDate'];
+		$subscriptionRequest->amount = $subscription['amount'];
+		$subscriptionRequest->currency = $subscription['currency'];
+		$subscriptionRequest->initialAmount = $subscription['initialAmount'];
+		$subscriptionRequest->initialAmountNumber = $subscription['initialAmountNumber'];
+		$subscriptionRequest->rrule = $subscription['rrule'];
+		$subscriptionRequest->subscriptionId = $subscription['subscriptionId'];
+		$subscriptionRequest->description = $subscription['description'];
+		$cardRequest = new cardRequest();
+		$cardRequest->paymentToken = $card['paymentToken'];
+		$createSubscription = new createSubscription();
+		$createSubscription->commonRequest = $commonRequest;
+		$createSubscription->orderRequest = $orderRequest;
+		$createSubscription->subscriptionRequest = $subscriptionRequest;
+		$createSubscription->cardRequest = $cardRequest;
+		return $this->call_ws('createSubscription', array($createSubscription));
+	}
+
+
 }
+
+/**
+ *
+ *
+ */
+
 class commonRequest {
 	public $paymentSource; // string
 	public $submissionDate; // dateTime
