@@ -15,7 +15,7 @@ include('lib-v5/functions.php');
 /*
  * Parameters 
  *
- *  $token is the payment card alias/token
+ *  $uuid is the payment card alias/token
  * 
 */
 
