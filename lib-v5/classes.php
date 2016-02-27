@@ -125,6 +125,22 @@ class PayzenWSv5 extends SoapClient {
 	}
 
 	/**
+	 * @param $uuid
+	 * @return bool|mixed
+	 */
+	public function createTokenFromTransaction($uuid){
+		//Génération du body
+		$commonRequest = new commonRequest();
+		$commonRequest->submissionDate = new DateTime('now', new DateTimeZone('UTC'));
+		$queryRequest = new queryRequest();
+		$queryRequest->uuid = $uuid;
+		$createTokenFromTransaction = new createTokenFromTransaction();
+		$createTokenFromTransaction->commonRequest = $commonRequest;
+		$createTokenFromTransaction->queryRequest = $queryRequest;
+		return $this->call_ws('createTokenFromTransaction', array($createTokenFromTransaction));
+	}
+
+	/**
 	 * @param $paymentToken
 	 * @return bool|mixed
 	 */
@@ -475,6 +491,17 @@ class cancelToken {
 }
 class cancelTokenResponse {
 	public $cancelTokenResult; // cancelTokenResult
+}
+class createTokenFromTransaction {
+	public $commonRequest; // commonRequest
+	public $queryRequest; // queryRequest
+}
+class createTokenFromTransactionResponse {
+	public $createTokenFromTransactionResult; // createTokenFromTransactionResult
+}
+class createTokenFromTransactionResult {
+	public $commonResponse; // commonResponse
+	public $authorizationResponse; // authorizationResponse
 }
 class cancelTokenResult {
 	public $commonResponse; // commonResponse
